@@ -1,0 +1,16 @@
+{
+    "contents" : "## Put comments here that give an overall description of what your\n## functions do\n\n## Write a short comment describing this function\n\nmakeCacheMatrix <- function(x = matrix()) {\n    m <- NULL\n    set <- function(y) {\n        x <<- y\n        m <<- NULL\n    }\n    get <- function() {\n        x\n    }\n    set_invert <- function(invert) {\n        m <<- invert\n    }\n    get_invert <- function() {\n        m\n    }\n    list(set = set, \n         get = get,\n         set_invert = set_invert,\n         get_invert = get_invert)\n}\n\n\n## Write a short comment describing this function\n\ncacheSolve <- function(x, ...) {\n    m <- x$get_invert()\n    if(!is.null(m)) {\n        message(\"getting cached data\")\n        return(m)\n    }\n    data <- x$get()\n    m <- solve(data, ...)\n    x$set_invert(m)\n    m\n}\n\nsample_matrix <- matrix(c(1,0,4, 1,3,4, 4,1,0), nrow = 3, ncol = 3, byrow = TRUE,\n                        dimnames = list(c(\"row1\", \"row2\", \"row3\"),\n                                        c(\"C.1\", \"C.2\", \"C.3\")))\nx <- makeCacheMatrix()\nx$set(makeCacheMatrix)\nx$get()\nx$get_invert()\nx$set_invert(makeCacheMatrix)\n\nmakeCacheMatrix(sample_matrix)\ncacheSolve (sample_matrix)\nget(sample_matrix)\n",
+    "created" : 1432199241948.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3096614318",
+    "id" : "55953E7C",
+    "lastKnownWriteTime" : 1432213253,
+    "path" : "~/R/ProgrammingAssignment2/cachematrix.R",
+    "project_path" : "cachematrix.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
